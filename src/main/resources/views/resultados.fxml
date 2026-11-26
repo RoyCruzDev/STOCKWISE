@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.stockwise.controller.ResultadosController">
+    <ScrollPane fx:id="contentBox" fitToWidth="true" styleClass="scroll-page" hbarPolicy="NEVER">
+        <VBox styleClass="page" spacing="12">
+            <HBox styleClass="toolbar-row" spacing="10">
+                <VBox HBox.hgrow="ALWAYS" spacing="2">
+                    <Label text="Resultados del análisis" styleClass="page-title"/>
+                    <Label fx:id="subtitleLabel" styleClass="page-subtitle" wrapText="true" minHeight="-Infinity"/>
+                </VBox>
+                <Button text="Acciones recomendadas" onAction="#verAcciones" minWidth="-Infinity"/>
+                <Button fx:id="analyzeButton" text="Analizar de nuevo" styleClass="primary" onAction="#analyze"
+                        minWidth="-Infinity"/>
+            </HBox>
+            <FlowPane fx:id="kpiPane" hgap="12" vgap="12"/>
+            <VBox fx:id="notesBox" spacing="6"/>
+            <TabPane fx:id="tabs" tabClosingPolicy="UNAVAILABLE" minHeight="660"/>
+        </VBox>
+    </ScrollPane>
+    <VBox fx:id="emptyBox" styleClass="empty-state" visible="false" managed="false">
+        <Label text="Todavía no hay análisis en este proyecto" styleClass="empty-title"/>
+        <Label styleClass="muted" wrapText="true" maxWidth="520"
+               text="Importe sus ventas (y si las tiene, inventario y compras) y pulse Analizar. STOCKWISE revisará cada producto y le dirá qué comprar, cuánto y qué dejar de comprar."/>
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Importar datos" onAction="#importData"/>
+            <Button text="Analizar ahora" styleClass="primary" onAction="#analyze"/>
+        </HBox>
+    </VBox>
+</StackPane>

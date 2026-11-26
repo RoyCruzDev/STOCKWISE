@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.stockwise.controller.InventarioController" styleClass="page">
+    <FlowPane fx:id="kpiPane" hgap="14" vgap="14"/>
+    <HBox styleClass="toolbar-row">
+        <ComboBox fx:id="branchFilter" prefWidth="220"/>
+        <TextField fx:id="searchField" promptText="Buscar producto…" prefWidth="220"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Ajustar stock" onAction="#ajustar"/>
+        <Button text="Entrada" onAction="#entrada"/>
+        <Button text="Salida" onAction="#salida"/>
+        <Button text="Trasladar" onAction="#trasladar"/>
+        <Button text="Actualizar" onAction="#refresh"/>
+    </HBox>
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <Tab text="Stock por sucursal">
+            <TableView fx:id="stockTable"/>
+        </Tab>
+        <Tab text="Alertas e indicadores">
+            <VBox spacing="8">
+                <HBox styleClass="toolbar-row">
+                    <Label text="Estado" styleClass="form-label"/>
+                    <ComboBox fx:id="stateFilter" prefWidth="200"/>
+                    <Label styleClass="muted" wrapText="true"
+                           text="Indicadores por producto (todas las sucursales). Días de stock: cuántos días alcanzaría el stock con lo que se vende."/>
+                </HBox>
+                <TableView fx:id="alertTable" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </Tab>
+        <Tab text="Historial de movimientos">
+            <TableView fx:id="movementTable"/>
+        </Tab>
+    </TabPane>
+</VBox>

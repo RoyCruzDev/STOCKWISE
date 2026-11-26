@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.stockwise.controller.DashboardController"
+            fitToWidth="true" styleClass="scroll-page">
+    <VBox styleClass="page">
+        <HBox styleClass="toolbar-row">
+            <VBox>
+                <Label text="Resumen del negocio" styleClass="page-title"/>
+                <Label fx:id="subtitleLabel" styleClass="page-subtitle"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="refreshButton" text="Actualizar" onAction="#refresh" minWidth="-Infinity"/>
+        </HBox>
+
+        <VBox fx:id="emptyState" styleClass="card, empty-state" visible="false" managed="false">
+            <Label text="Aún no hay información para analizar" styleClass="empty-title"/>
+            <Label styleClass="muted" wrapText="true"
+                   text="Importe su historial de ventas, productos e inventarios desde Excel para obtener indicadores, predicciones y recomendaciones. También puede generar un archivo de demostración desde el módulo de importación."/>
+            <Button text="Ir a Importar Excel" styleClass="primary" onAction="#openImport"/>
+        </VBox>
+
+        <VBox fx:id="contentBox" spacing="16">
+            <FlowPane fx:id="kpiPane" hgap="14" vgap="14"/>
+
+            <HBox spacing="16">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" minWidth="420">
+                    <Label text="Ventas mensuales y predicción" styleClass="card-title"/>
+                    <Label fx:id="forecastNote" styleClass="card-subtitle" wrapText="true"/>
+                    <LineChart fx:id="salesChart" animated="false" prefHeight="300" legendVisible="true">
+                        <xAxis>
+                            <CategoryAxis/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis forceZeroInRange="true"/>
+                        </yAxis>
+                    </LineChart>
+                </VBox>
+                <VBox styleClass="card" prefWidth="400" minWidth="320">
+                    <Label text="Ventas por categoría" styleClass="card-title"/>
+                    <Label text="Últimos 12 meses" styleClass="card-subtitle"/>
+                    <PieChart fx:id="categoryChart" animated="false" prefHeight="300" legendVisible="false"
+                              labelsVisible="true"/>
+                </VBox>
+            </HBox>
+
+            <HBox spacing="16">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" minWidth="420">
+                    <Label text="Productos más vendidos" styleClass="card-title"/>
+                    <Label text="Importe de ventas de los últimos 90 días" styleClass="card-subtitle"/>
+                    <BarChart fx:id="topChart" animated="false" prefHeight="300" legendVisible="false">
+                        <xAxis>
+                            <NumberAxis/>
+                        </xAxis>
+                        <yAxis>
+                            <CategoryAxis/>
+                        </yAxis>
+                    </BarChart>
+                </VBox>
+                <VBox styleClass="card" prefWidth="520" minWidth="380">
+                    <HBox styleClass="toolbar-row">
+                        <Label text="Alertas y recomendaciones" styleClass="card-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="Ver asesor" styleClass="flat" onAction="#openAdvisor"/>
+                    </HBox>
+                    <VBox fx:id="alertsBox" spacing="8"/>
+                </VBox>
+            </HBox>
+
+            <HBox spacing="16">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                    <Label text="Riesgo de agotarse" styleClass="card-title"/>
+                    <TableView fx:id="riskTable" prefHeight="250"/>
+                </VBox>
+                <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                    <Label text="Exceso de stock" styleClass="card-title"/>
+                    <TableView fx:id="overstockTable" prefHeight="250"/>
+                </VBox>
+                <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                    <Label text="Se venden lento (sin movimiento)" styleClass="card-title"/>
+                    <TableView fx:id="lowRotationTable" prefHeight="250"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </VBox>
+</ScrollPane>

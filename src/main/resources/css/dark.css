@@ -1,0 +1,31 @@
+/* STOCKWISE - Tema oscuro: redefine solo las variables de color del tema base. */
+.root {
+    -sw-bg: #1e1e1e;
+    -sw-surface: #262626;
+    -sw-surface-alt: #2c2c2c;
+    -sw-border: #3a3a3a;
+    -sw-border-strong: #4a4a4a;
+    -sw-text: #e4e4e1;
+    -sw-muted: #a0a09a;
+    -sw-primary: #3b6d9e;
+    -sw-primary-hover: #4a7fb2;
+    -sw-accent: #6f9fcf;
+    -sw-sidebar: #1a1a1a;
+    -sw-sidebar-hover: #2a2a2a;
+    -sw-sidebar-selected: #303030;
+    -sw-sidebar-text: #d4d4d0;
+    -sw-success: #6cbf8a;
+    -sw-success-bg: #1f2e24;
+    -sw-warning: #d9a548;
+    -sw-warning-bg: #332a18;
+    -sw-danger: #e07a73;
+    -sw-danger-bg: #3a2220;
+    -sw-info-bg: #22303d;
+    -sw-selection: #2f4256;
+}
+.tooltip { -fx-background-color: #e4e4e1; -fx-text-fill: #1e1e1e; }
+.default-color0.chart-series-line { -fx-stroke: #6f9fcf; }
+.default-color0.chart-line-symbol { -fx-background-color: #6f9fcf; }
+.chart-legend-item-symbol.default-color0.chart-line-symbol { -fx-background-color: #6f9fcf; }
+.default-color0.chart-bar { -fx-bar-fill: #6f9fcf; }
+.default-color0.chart-pie { -fx-pie-color: #6f9fcf; }

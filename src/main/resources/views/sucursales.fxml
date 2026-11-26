@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<TabPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="com.stockwise.controller.SucursalesController" tabClosingPolicy="UNAVAILABLE"
+         styleClass="page">
+    <Tab text="Sucursales e inventario">
+        <VBox spacing="10">
+            <HBox styleClass="toolbar-row">
+                <Button text="Nueva sucursal" styleClass="primary" onAction="#nueva"/>
+                <Button fx:id="editButton" text="Editar" onAction="#editar"/>
+                <Button fx:id="deleteButton" text="Eliminar" styleClass="danger" onAction="#eliminar"/>
+            </HBox>
+            <SplitPane dividerPositions="0.45" VBox.vgrow="ALWAYS">
+                <TableView fx:id="branchTable"/>
+                <VBox styleClass="card">
+                    <Label fx:id="inventoryTitle" styleClass="card-title" text="Inventario de la sucursal"/>
+                    <Label fx:id="inventorySummary" styleClass="card-subtitle"/>
+                    <TableView fx:id="inventoryTable" VBox.vgrow="ALWAYS"/>
+                </VBox>
+            </SplitPane>
+        </VBox>
+    </Tab>
+    <Tab text="Comparación de rendimiento">
+        <VBox spacing="12">
+            <HBox styleClass="toolbar-row">
+                <Label text="Desde" styleClass="form-label"/>
+                <DatePicker fx:id="fromDate" prefWidth="140"/>
+                <Label text="Hasta" styleClass="form-label"/>
+                <DatePicker fx:id="toDate" prefWidth="140"/>
+                <Button text="Comparar" styleClass="primary" onAction="#comparar"/>
+            </HBox>
+            <VBox styleClass="card">
+                <Label text="Ventas y utilidad por sucursal" styleClass="card-title"/>
+                <BarChart fx:id="compareChart" animated="false" prefHeight="300">
+                    <xAxis>
+                        <CategoryAxis/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis/>
+                    </yAxis>
+                </BarChart>
+            </VBox>
+            <TableView fx:id="compareTable" VBox.vgrow="ALWAYS" prefHeight="220"/>
+        </VBox>
+    </Tab>
+    <Tab text="Traslados sugeridos">
+        <VBox spacing="10">
+            <HBox styleClass="toolbar-row">
+                <Label styleClass="muted" wrapText="true" HBox.hgrow="ALWAYS"
+                       text="Productos con exceso en una sucursal y faltante en otra (demanda de los últimos 90 días). Trasladar evita compras innecesarias."/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Recalcular" onAction="#calcularTraslados"/>
+                <Button fx:id="transferButton" text="Ejecutar traslado" styleClass="primary" onAction="#ejecutarTraslado"/>
+            </HBox>
+            <TableView fx:id="transferTable" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </Tab>
+</TabPane>

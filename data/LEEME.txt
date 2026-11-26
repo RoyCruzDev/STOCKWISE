@@ -1,0 +1,8 @@
+Carpeta de datos locales de STOCKWISE (cuando se ejecuta desde la carpeta del proyecto).
+
+  stockwise.db   Base de datos SQLite (se crea automáticamente en el primer inicio).
+  backups/       Copias de seguridad generadas desde Configuración.
+  logs/          Registro de errores y eventos (stockwise-0.log ...).
+
+La aplicación instalada (STOCKWISE.exe) guarda sus datos en  %USERPROFILE%\STOCKWISE\data
+Se puede indicar otra carpeta con la opción de Java  -Dstockwise.data=RUTA

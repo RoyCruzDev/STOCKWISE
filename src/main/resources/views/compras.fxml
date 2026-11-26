@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.stockwise.controller.ComprasController" styleClass="page">
+    <HBox styleClass="toolbar-row">
+        <VBox HBox.hgrow="ALWAYS">
+            <Label text="Recomendaciones de compra" styleClass="page-title"/>
+            <Label fx:id="budgetOrigin" styleClass="page-subtitle" wrapText="true"/>
+        </VBox>
+        <Button text="Proveedores y ciclos" onAction="#manageSuppliers"/>
+        <Button text="Gestionar presupuestos" onAction="#manageBudgets"/>
+        <Button text="Recalcular" styleClass="primary" onAction="#refresh"/>
+    </HBox>
+    <FlowPane fx:id="kpiPane" hgap="14" vgap="14"/>
+    <VBox fx:id="notesBox" spacing="6"/>
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <Tab text="Plan de compras">
+            <VBox spacing="8">
+                <HBox styleClass="toolbar-row">
+                    <Label text="Mostrar" styleClass="form-label"/>
+                    <ComboBox fx:id="filterCombo" prefWidth="230"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="Sucursal de recepción" styleClass="form-label"/>
+                    <ComboBox fx:id="branchCombo" prefWidth="220"/>
+                    <CheckBox fx:id="pendingCheck" text="Como pedido en tránsito"/>
+                    <Button fx:id="orderButton" text="Registrar orden de compra" styleClass="primary"
+                            onAction="#registerOrder"/>
+                </HBox>
+                <TableView fx:id="planTable" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </Tab>
+        <Tab text="Órdenes y compras registradas">
+            <VBox spacing="8">
+                <HBox styleClass="toolbar-row">
+                    <Label fx:id="transitLabel" styleClass="muted"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="receiveButton" text="Recibir orden seleccionada" styleClass="primary"
+                            onAction="#receiveOrder"/>
+                    <Button fx:id="cancelButton" text="Cancelar orden" onAction="#cancelOrder"/>
+                </HBox>
+                <TableView fx:id="purchasesTable" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>

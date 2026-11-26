@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.stockwise.controller.ProductosController" styleClass="page">
+    <HBox styleClass="toolbar-row">
+        <TextField fx:id="searchField" promptText="Buscar por código o nombre…" prefWidth="260"/>
+        <ComboBox fx:id="categoryFilter" prefWidth="200" promptText="Categoría"/>
+        <Label fx:id="countLabel" styleClass="muted"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="newButton" text="Nuevo producto" styleClass="primary" onAction="#nuevo"/>
+        <Button fx:id="editButton" text="Editar" onAction="#editar"/>
+        <Button fx:id="demandButton" text="Ver demanda" onAction="#verDemanda"/>
+        <Button fx:id="deleteButton" text="Eliminar" styleClass="danger" onAction="#eliminar"/>
+        <Button fx:id="refreshButton" text="Actualizar" onAction="#refresh"/>
+    </HBox>
+    <SplitPane dividerPositions="0.6" VBox.vgrow="ALWAYS">
+        <TableView fx:id="productTable"/>
+        <VBox styleClass="card" minWidth="380">
+            <Label fx:id="detailTitle" styleClass="card-title" text="Seleccione un producto" wrapText="true"/>
+            <Label fx:id="detailSubtitle" styleClass="card-subtitle" wrapText="true"/>
+            <FlowPane fx:id="detailKpis" hgap="10" vgap="10"/>
+            <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                <Tab text="Historial de ventas">
+                    <VBox spacing="8">
+                        <LineChart fx:id="historyChart" animated="false" prefHeight="220" legendVisible="false">
+                            <xAxis>
+                                <CategoryAxis/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis forceZeroInRange="true"/>
+                            </yAxis>
+                        </LineChart>
+                        <TableView fx:id="salesTable" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+                </Tab>
+                <Tab text="Inventario por sucursal">
+                    <TableView fx:id="stockTable"/>
+                </Tab>
+            </TabPane>
+        </VBox>
+    </SplitPane>
+</VBox>

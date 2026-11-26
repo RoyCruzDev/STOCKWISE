@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.stockwise.controller.ProcesamientoController" styleClass="page">
+    <VBox styleClass="progress-card" maxWidth="640" maxHeight="-Infinity">
+        <Label fx:id="titleLabel" text="Análisis del proyecto" styleClass="hero-title" wrapText="true"/>
+        <Label fx:id="subtitleLabel" styleClass="hero-subtitle" wrapText="true"
+               text="Se usa todo el historial acumulado del proyecto. Puede cancelar en cualquier momento: no se guardará ningún resultado parcial."/>
+        <HBox alignment="BOTTOM_LEFT" spacing="12">
+            <Label fx:id="percentLabel" text="0 %" styleClass="progress-percent"/>
+            <Label fx:id="messageLabel" styleClass="strong" wrapText="true" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <ProgressBar fx:id="progressBar" progress="0" maxWidth="Infinity" prefHeight="14"/>
+        <VBox fx:id="stagesBox" spacing="6"/>
+        <HBox styleClass="toolbar-row">
+            <Label fx:id="timeLabel" styleClass="muted"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="backButton" text="Volver al inicio" onAction="#back"/>
+            <Button fx:id="cancelButton" text="Cancelar análisis" styleClass="danger" onAction="#cancel"/>
+            <Button fx:id="startButton" text="Iniciar análisis" styleClass="primary" onAction="#start"/>
+        </HBox>
+    </VBox>
+</StackPane>

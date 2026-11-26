@@ -1,0 +1,13 @@
+target/
+*.iml
+.idea/
+.vscode/
+.classpath
+.project
+.settings/
+
+# Datos locales del usuario (base de datos, copias y registros)
+data/*.db
+data/*.db-journal
+data/backups/
+data/logs/

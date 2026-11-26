@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.stockwise.controller.ProyectosController" styleClass="content">
+    <left>
+        <VBox styleClass="selector-panel" prefWidth="280">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <VBox spacing="1">
+                    <Label text="STOCKWISE" styleClass="brand-name"/>
+                </VBox>
+            </HBox>
+            <Label wrapText="true" styleClass="brand-sub"
+                   text="Cada proyecto es un espacio de análisis independiente (por ejemplo Ropa, Alimentos o Electrónica) con sus propios productos, ventas, compras, inventario, configuración, importaciones y resultados. Los datos de un proyecto nunca se mezclan con los de otro."/>
+            <Region VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </left>
+    <center>
+        <VBox spacing="16">
+            <padding>
+                <Insets top="28" left="28" right="28" bottom="20"/>
+            </padding>
+            <HBox styleClass="toolbar-row">
+                <VBox HBox.hgrow="ALWAYS" spacing="4">
+                    <Label text="Sus proyectos" styleClass="hero-title"/>
+                    <Label text="Seleccione un proyecto para continuar o cree uno nuevo." styleClass="hero-subtitle"/>
+                </VBox>
+                <Button fx:id="newButton" text="Nuevo proyecto" styleClass="primary" onAction="#create"/>
+            </HBox>
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="scroll-page">
+                <VBox fx:id="listBox" spacing="0" style="-fx-border-color: -sw-border; -fx-background-color: -sw-surface;"/>
+            </ScrollPane>
+            <HBox styleClass="toolbar-row">
+                <Label fx:id="infoLabel" styleClass="muted" wrapText="true" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <Button fx:id="renameButton" text="Renombrar" onAction="#rename"/>
+                <Button fx:id="deleteButton" text="Eliminar" styleClass="danger" onAction="#delete"/>
+                <Button fx:id="openButton" text="Abrir proyecto" styleClass="primary" onAction="#open"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
